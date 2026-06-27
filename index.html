@@ -1,987 +1,951 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#1a1a2e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>UPSC Ready - IAS Preparation Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0f0f23;
-            --bg-secondary: #1a1a3e;
-            --bg-card: rgba(255,255,255,0.05);
-            --accent-gold: #ffd700;
-            --accent-orange: #ff6b35;
-            --accent-teal: #00d4aa;
-            --accent-purple: #9d4edd;
-            --accent-blue: #4cc9f0;
-            --accent-red: #e63946;
-            --accent-green: #2a9d8f;
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255,255,255,0.7);
-            --text-muted: rgba(255,255,255,0.5);
-            --border: rgba(255,255,255,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* App Container */
-        .app-container {
-            max-width: 430px;
-            margin: 0 auto;
-            min-height: 100vh;
-            position: relative;
-            background: linear-gradient(180deg, var(--bg-primary) 0%, #1a1a2e 100%);
-        }
-
-        /* Header */
-        .header {
-            padding: 1.2rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15, 15, 35, 0.95);
-            backdrop-filter: blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .icon-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .icon-btn:hover {
-            background: rgba(255,215,0,0.1);
-            border-color: var(--accent-gold);
-        }
-
-        /* Welcome Banner */
-        .welcome-banner {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,107,53,0.1));
-            border-radius: 20px;
-            margin: 1rem 1.5rem;
-            border: 1px solid rgba(255,215,0,0.2);
-        }
-
-        .welcome-banner h2 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-
-        .welcome-banner p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .streak-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            background: rgba(255,215,0,0.2);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent-gold);
-            margin-top: 0.5rem;
-        }
-
-        /* Circular Menu Section */
-        .circle-section {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* Circular Navigation */
-        .circle-container {
-            position: relative;
-            width: 320px;
-            height: 320px;
-            margin: 0 auto;
-        }
-
-        .center-logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            z-index: 10;
-            box-shadow: 0 0 40px rgba(255,215,0,0.3);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
-            50% { box-shadow: 0 0 60px rgba(255,215,0,0.5); }
-        }
-
-        .center-logo span {
-            font-size: 1.8rem;
-        }
-
-        .center-logo small {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: var(--bg-primary);
-        }
-
-        .orbit-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 280px;
-            height: 280px;
-            border: 1px dashed rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-
-        .subject-node {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-            font-size: 1.3rem;
-            z-index: 5;
-        }
-
-        .subject-node:hover {
-            transform: scale(1.15);
-            z-index: 20;
-        }
-
-        .subject-node.active {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 20px rgba(255,215,0,0.4);
-        }
-
-        .subject-node .node-label {
-            position: absolute;
-            bottom: -20px;
-            font-size: 0.6rem;
-            font-weight: 600;
-            white-space: nowrap;
-            color: var(--text-secondary);
-        }
-
-        /* Subject Colors */
-        .sub-env { background: linear-gradient(135deg, #2a9d8f, #264653); }
-        .sub-polity { background: linear-gradient(135deg, #e63946, #9d0208); }
-        .sub-economy { background: linear-gradient(135deg, #f4a261, #e76f51); }
-        .sub-history { background: linear-gradient(135deg, #9d4edd, #7b2cbf); }
-        .sub-geo { background: linear-gradient(135deg, #4cc9f0, #4361ee); }
-        .sub-science { background: linear-gradient(135deg, #2a9d8f, #1d3557); }
-        .sub-current { background: linear-gradient(135deg, #ff6b35, #f7931e); }
-        .sub-essay { background: linear-gradient(135deg, #ffd700, #ff8c00); }
-
-        /* Subject Detail Panel */
-        .detail-panel {
-            background: var(--bg-card);
-            border-radius: 24px 24px 0 0;
-            padding: 1.5rem;
-            margin-top: 1rem;
-            border-top: 1px solid var(--border);
-            min-height: 300px;
-        }
-
-        .detail-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .detail-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .detail-title h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .detail-title p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Topic Cards */
-        .topic-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-        }
-
-        .topic-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .topic-card:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: rgba(255,215,0,0.3);
-            transform: translateY(-2px);
-        }
-
-        .topic-card .topic-icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .topic-card h4 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .topic-card p {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        .topic-card .progress-bar {
-            height: 3px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 2px;
-            margin-top: 0.5rem;
-            overflow: hidden;
-        }
-
-        .topic-card .progress-fill {
-            height: 100%;
-            border-radius: 2px;
-            background: linear-gradient(90deg, var(--accent-gold), var(--accent-orange));
-        }
-
-        /* Content Viewer */
-        .content-viewer {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
-            z-index: 1000;
-            overflow-y: auto;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
-
-        .content-header {
-            padding: 1.2rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: rgba(15, 15, 35, 0.95);
-            backdrop-filter: blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .back-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .content-body {
-            padding: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .content-body h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-gold);
-        }
-
-        .content-body h3 {
-            font-size: 1.1rem;
-            margin: 1.5rem 0 0.5rem;
-            color: var(--accent-orange);
-        }
-
-        .content-body p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .content-body ul {
-            margin-left: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .content-body li {
-            margin-bottom: 0.5rem;
-        }
-
-        .highlight-box {
-            background: rgba(255,215,0,0.1);
-            border-left: 3px solid var(--accent-gold);
-            padding: 1rem;
-            border-radius: 0 12px 12px 0;
-            margin: 1rem 0;
-        }
-
-        .info-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 1.2rem;
-            margin: 1rem 0;
-            border: 1px solid var(--border);
-        }
-
-        .info-card h4 {
-            color: var(--accent-teal);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Bottom Navigation */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 430px;
-            background: rgba(15, 15, 35, 0.95);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-around;
-            padding: 0.8rem 0;
-            z-index: 100;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.2rem;
-            cursor: pointer;
-            padding: 0.3rem 1rem;
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background: rgba(255,215,0,0.1);
-        }
-
-        .nav-item span {
-            font-size: 1.3rem;
-        }
-
-        .nav-item small {
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .nav-item.active small {
-            color: var(--accent-gold);
-        }
-
-        /* Daily Update Badge */
-        .update-badge {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
-            color: var(--bg-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            z-index: 99;
-            animation: bounce 2s infinite;
-            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        /* Search Bar */
-        .search-container {
-            padding: 0 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 0.8rem 1.2rem;
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        .search-bar:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(255,215,0,0.1);
-        }
-
-        .search-bar::placeholder {
-            color: var(--text-muted);
-        }
-
-        /* Responsive padding for bottom nav */
-        .main-content {
-            padding-bottom: 80px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Let's Study - UPSC Preparation Hub</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700&display=swap');
+
+  :root {
+    --deep-void: #0A0B0E;
+    --base-dark: #0C0C0E;
+    --surface: #131316;
+    --border: #1A1A1E;
+    --text: #F0F0F5;
+    --muted: #8A8B96;
+    --pink: #FF4D8B;
+    --pink-light: #FF6B9F;
+    --blue: #00D4FF;
+    --blue-light: #33DFFF;
+    --violet: #8B5CF6;
+    --violet-light: #A78BFA;
+    --green: #22C55E;
+    --green-light: #4ADE80;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--deep-void);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== ANIMATED BACKGROUND ===== */
+  .bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+  }
+  .bg-orb-1 { width: 500px; height: 500px; background: var(--pink); top: -10%; left: -10%; animation-delay: 0s; }
+  .bg-orb-2 { width: 400px; height: 400px; background: var(--blue); top: 40%; right: -10%; animation-delay: -5s; animation-duration: 25s; }
+  .bg-orb-3 { width: 350px; height: 350px; background: var(--violet); bottom: 10%; left: 20%; animation-delay: -10s; animation-duration: 22s; }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  /* ===== PARTICLES CANVAS ===== */
+  #particles-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    background: rgba(10,11,14,0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+  }
+  .nav-inner {
+    width: 100%; max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand {
+    font-weight: 800; font-size: 18px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 32px;
+  }
+  .nav-links a {
+    color: var(--muted); font-weight: 500; font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; }
+  .nav-mobile { display: none; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,77,139,0.08), transparent);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black, transparent);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black, transparent);
+    animation: gridPulse 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes gridPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  .hero-inner {
+    position: relative;
+    width: 100%; max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-left { animation: heroSlideIn 1s ease-out 0.3s both; }
+  @keyframes heroSlideIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-label {
+    display: inline-block;
+    font-weight: 600; font-size: 12px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 20px;
+  }
+  .hero-title {
+    font-weight: 900;
+    font-size: clamp(42px, 8vw, 80px);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--text) 60%, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-desc {
+    color: var(--muted); font-size: 18px;
+    line-height: 1.7; max-width: 480px;
+    margin-bottom: 32px;
+  }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 14px 28px; border-radius: 12px;
+    font-weight: 600; font-size: 15px;
+    text-decoration: none; cursor: pointer;
+    border: none; transition: all 0.3s ease;
+  }
+  .btn-primary {
+    background: var(--pink); color: white;
+  }
+  .btn-primary:hover {
+    background: var(--pink-light);
+    box-shadow: 0 0 30px rgba(255,77,139,0.35);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--muted);
+    background: rgba(255,255,255,0.03);
+    transform: translateY(-2px);
+  }
+  .hero-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+  .stat-pill {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 20px; border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.06);
+    animation: heroSlideIn 0.8s ease-out both;
+  }
+  .stat-pill:nth-child(1) { animation-delay: 0.8s; }
+  .stat-pill:nth-child(2) { animation-delay: 0.9s; }
+  .stat-pill:nth-child(3) { animation-delay: 1.0s; }
+  .stat-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+  .stat-num { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; color: var(--text); }
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+
+  /* Hero Right - Visual */
+  .hero-visual {
+    position: relative;
+    width: 100%; aspect-ratio: 1;
+    max-width: 500px;
+    margin: 0 auto;
+    animation: heroSlideIn 1s ease-out 0.5s both;
+  }
+  .orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    animation: orbitSpin linear infinite;
+  }
+  .orbit-ring-1 { width: 100%; height: 100%; top: 0; left: 0; animation-duration: 30s; }
+  .orbit-ring-2 { width: 75%; height: 75%; top: 12.5%; left: 12.5%; animation-duration: 20s; animation-direction: reverse; border-color: rgba(255,77,139,0.1); }
+  .orbit-ring-3 { width: 50%; height: 50%; top: 25%; left: 25%; animation-duration: 15s; border-color: rgba(0,212,255,0.1); }
+  @keyframes orbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .orbit-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px currentColor;
+  }
+  .orbit-ring-1 .orbit-dot { top: -5px; left: 50%; transform: translateX(-50%); background: var(--pink); color: var(--pink); }
+  .orbit-ring-2 .orbit-dot { bottom: -5px; left: 50%; transform: translateX(-50%); background: var(--blue); color: var(--blue); }
+  .orbit-ring-3 .orbit-dot { top: 50%; right: -5px; transform: translateY(-50%); background: var(--violet); color: var(--violet); }
+
+  .hero-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%; height: 35%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--violet));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow:
+      0 0 60px rgba(255,77,139,0.3),
+      0 0 120px rgba(139,92,246,0.15),
+      inset 0 0 40px rgba(255,255,255,0.1);
+    animation: centerPulse 4s ease-in-out infinite;
+  }
+  @keyframes centerPulse {
+    0%, 100% { box-shadow: 0 0 60px rgba(255,77,139,0.3), 0 0 120px rgba(139,92,246,0.15), inset 0 0 40px rgba(255,255,255,0.1); }
+    50% { box-shadow: 0 0 80px rgba(255,77,139,0.4), 0 0 160px rgba(139,92,246,0.2), inset 0 0 50px rgba(255,255,255,0.15); }
+  }
+  .hero-center svg { width: 50%; height: 50%; opacity: 0.9; }
+
+  /* ===== SECTIONS ===== */
+  section { position: relative; z-index: 2; }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-title {
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--text) 70%, var(--pink-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .section-subtitle {
+    color: var(--muted); font-size: 16px;
+    max-width: 600px; margin: 0 auto;
+  }
+  .container {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== SUBJECTS ===== */
+  .subjects-section { padding: 120px 0; background: var(--base-dark); }
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px; max-width: 800px;
+    margin: 0 auto;
+  }
+  .subject-card {
+    display: flex; align-items: center; gap: 20px;
+    padding: 28px; border-radius: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  .subject-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+  .subject-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--glow), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+  .subject-card:hover::before { opacity: 0.5; }
+  .subject-card:hover {
+    border-color: var(--glow);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 25px var(--glow-shadow);
+    transform: translateY(-4px) scale(1.02);
+  }
+  .subject-circle {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .subject-card:hover .subject-circle {
+    transform: scale(1.1);
+  }
+  .subject-circle svg { width: 30px; height: 30px; color: white; }
+  .subject-info h3 {
+    font-weight: 700; font-size: 18px;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .subject-info p {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ===== TRACKER ===== */
+  .tracker-section {
+    padding: 120px 0;
+    background: var(--deep-void);
+    position: relative;
+    overflow: hidden;
+  }
+  #dot-grid-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: auto;
+    z-index: 0;
+  }
+  .tracker-cards {
+    position: relative; z-index: 1;
+    display: flex; gap: 24px;
+    justify-content: center; flex-wrap: wrap;
+  }
+  .tracker-card {
+    width: 240px; padding: 40px 28px;
+    border-radius: 20px; text-align: center;
+    background: linear-gradient(135deg, rgba(255,77,139,0.03), rgba(139,92,246,0.03));
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.5s ease;
+  }
+  .tracker-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .tracker-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--accent);
+  }
+  .tracker-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05) 30%, transparent 50%, rgba(255,255,255,0.05) 70%, rgba(255,255,255,0.15));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+  .tracker-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(ellipse 90% 40% at 50% 0%, rgba(255,255,255,0.1) 0%, transparent 55%);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .tracker-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 48px;
+    color: var(--text); line-height: 1;
+    position: relative; z-index: 1;
+  }
+  .tracker-line {
+    width: 40px; height: 2px;
+    border-radius: 1px; margin: 16px auto 12px;
+    position: relative; z-index: 1;
+  }
+  .tracker-label {
+    font-size: 14px; font-weight: 500;
+    color: var(--muted);
+    position: relative; z-index: 1;
+  }
+
+  /* ===== RESOURCES ===== */
+  .resources-section { padding: 120px 0; background: var(--base-dark); }
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .resource-card {
+    padding: 32px 24px; border-radius: 20px;
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.04);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.5s ease;
+  }
+  .resource-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .resource-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: var(--hover-shadow);
+    border-color: rgba(255,255,255,0.1);
+  }
+  .resource-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    transition: transform 0.3s ease;
+  }
+  .resource-card:hover .resource-icon { transform: scale(1.1); }
+  .resource-icon svg { width: 28px; height: 28px; }
+  .resource-card h3 {
+    font-weight: 700; font-size: 17px;
+    color: var(--text); margin-bottom: 8px;
+  }
+  .resource-card p {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 80px 0 40px;
+    background: var(--base-dark);
+    border-top: 1px solid var(--border);
+    position: relative; z-index: 2;
+  }
+  .footer-cta {
+    padding: 48px; border-radius: 24px;
+    text-align: center; margin-bottom: 48px;
+    background: rgba(255,255,255,0.01);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
+  }
+  .footer-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(ellipse 90% 40% at 50% 0%, rgba(255,255,255,0.08) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 35% at 65% 10%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .footer-cta h3 {
+    font-weight: 800;
+    font-size: clamp(24px, 3vw, 32px);
+    margin-bottom: 8px; position: relative; z-index: 1;
+  }
+  .footer-cta p {
+    color: var(--muted); margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  .footer-cta .btn { position: relative; z-index: 1; }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 24px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-brand { font-weight: 800; font-size: 16px; }
+  .footer-tagline { font-size: 13px; color: var(--muted); }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a {
+    color: var(--muted); font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy {
+    text-align: center; padding-top: 24px;
+    font-size: 13px; color: var(--muted); opacity: 0.5;
+  }
+
+  /* ===== REVEAL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .resources-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-left { order: 2; }
+    .hero-visual { order: 1; max-width: 350px; }
+    .hero-desc { margin-left: auto; margin-right: auto; }
+    .hero-buttons { justify-content: center; }
+    .hero-stats { justify-content: center; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .subjects-grid { grid-template-columns: 1fr; }
+    .resources-grid { grid-template-columns: 1fr; }
+    .subjects-section, .tracker-section, .resources-section { padding: 80px 0; }
+    .hero-stats { justify-content: center; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+<base target="_blank">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">UPSC Ready</div>
-            <div class="header-icons">
-                <div class="icon-btn">🔔</div>
-                <div class="icon-btn">👤</div>
-            </div>
-        </header>
 
-        <!-- Update Badge -->
-        <div class="update-badge">📅 Updated Today!</div>
+<!-- Animated Background Orbs -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
 
-        <div class="main-content">
-            <!-- Welcome Banner -->
-            <div class="welcome-banner">
-                <h2>Good Morning, Aspirant! ☀️</h2>
-                <p>Your daily dose of UPSC preparation is ready.</p>
-                <div class="streak-badge">
-                    🔥 <span id="streakCount">5</span> Day Streak
-                </div>
-            </div>
+<!-- Particle Canvas -->
+<canvas id="particles-canvas"></canvas>
 
-            <!-- Search -->
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="🔍 Search topics, subjects, keywords...">
-            </div>
-
-            <!-- Circular Subject Menu -->
-            <div class="circle-section">
-                <div class="section-title">📚 Choose Your Subject</div>
-
-                <div class="circle-container">
-                    <div class="center-logo">
-                        <span>🇮🇳</span>
-                        <small>UPSC</small>
-                    </div>
-                    <div class="orbit-ring"></div>
-
-                    <!-- Subject Nodes positioned in circle -->
-                    <div class="subject-node sub-env" style="top: 0; left: 50%; transform: translate(-50%, -50%);" onclick="showSubject('environment')">
-                        🌿
-                        <span class="node-label">Environment</span>
-                    </div>
-
-                    <div class="subject-node sub-polity" style="top: 15%; right: 5%; transform: translate(50%, -50%);" onclick="showSubject('polity')">
-                        ⚖️
-                        <span class="node-label">Polity</span>
-                    </div>
-
-                    <div class="subject-node sub-economy" style="top: 50%; right: 0; transform: translate(50%, -50%);" onclick="showSubject('economy')">
-                        💰
-                        <span class="node-label">Economy</span>
-                    </div>
-
-                    <div class="subject-node sub-history" style="bottom: 15%; right: 5%; transform: translate(50%, 50%);" onclick="showSubject('history')">
-                        🏛️
-                        <span class="node-label">History</span>
-                    </div>
-
-                    <div class="subject-node sub-geo" style="bottom: 0; left: 50%; transform: translate(-50%, 50%);" onclick="showSubject('geography')">
-                        🌍
-                        <span class="node-label">Geography</span>
-                    </div>
-
-                    <div class="subject-node sub-science" style="bottom: 15%; left: 5%; transform: translate(-50%, 50%);" onclick="showSubject('science')">
-                        🔬
-                        <span class="node-label">Science</span>
-                    </div>
-
-                    <div class="subject-node sub-current" style="top: 50%; left: 0; transform: translate(-50%, -50%);" onclick="showSubject('current')">
-                        📰
-                        <span class="node-label">Current</span>
-                    </div>
-
-                    <div class="subject-node sub-essay" style="top: 15%; left: 5%; transform: translate(-50%, -50%);" onclick="showSubject('essay')">
-                        ✍️
-                        <span class="node-label">Essay</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Subject Detail Panel -->
-            <div class="detail-panel" id="detailPanel">
-                <div class="detail-header">
-                    <div class="detail-icon sub-env" id="detailIcon">🌿</div>
-                    <div class="detail-title">
-                        <h3 id="detailTitle">Environment & Ecology</h3>
-                        <p id="detailSubtitle">12 topics • Updated today</p>
-                    </div>
-                </div>
-
-                <div class="topic-grid" id="topicGrid">
-                    <!-- Topics will be populated by JS -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <div class="nav-item active" onclick="showTab('home')">
-                <span>🏠</span>
-                <small>Home</small>
-            </div>
-            <div class="nav-item" onclick="showTab('subjects')">
-                <span>📚</span>
-                <small>Subjects</small>
-            </div>
-            <div class="nav-item" onclick="showTab('bookmarks')">
-                <span>🔖</span>
-                <small>Saved</small>
-            </div>
-            <div class="nav-item" onclick="showTab('tests')">
-                <span>📝</span>
-                <small>Tests</small>
-            </div>
-            <div class="nav-item" onclick="showTab('profile')">
-                <span>👤</span>
-                <small>Profile</small>
-            </div>
-        </nav>
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Let's Study</a>
+    <div class="nav-links">
+      <a href="#subjects">Subjects</a>
+      <a href="#tracker">Tracker</a>
+      <a href="#resources">Resources</a>
     </div>
+    <button class="nav-toggle" onclick="toggleMobile()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile" style="display:none;position:absolute;top:64px;left:0;right:0;background:rgba(10,11,14,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);padding:20px 24px;flex-direction:column;gap:16px;">
+    <a href="#subjects" style="color:var(--muted);text-decoration:none;font-size:16px;font-weight:500;" onclick="toggleMobile()">Subjects</a>
+    <a href="#tracker" style="color:var(--muted);text-decoration:none;font-size:16px;font-weight:500;" onclick="toggleMobile()">Tracker</a>
+    <a href="#resources" style="color:var(--muted);text-decoration:none;font-size:16px;font-weight:500;" onclick="toggleMobile()">Resources</a>
+  </div>
+</nav>
 
-    <!-- Content Viewer (Hidden by default) -->
-    <div class="content-viewer" id="contentViewer">
-        <div class="content-header">
-            <div class="back-btn" onclick="closeContent()">←</div>
-            <div>
-                <h3 style="font-size: 1rem;" id="contentTitle">Topic Title</h3>
-            </div>
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <span class="hero-label">UPSC Preparation Hub</span>
+      <h1 class="hero-title">Let's Study</h1>
+      <p class="hero-desc">Your comprehensive UPSC preparation companion. Organize subjects, track progress, and access curated study resources &mdash; all in one place.</p>
+      <div class="hero-buttons">
+        <a href="#subjects" class="btn btn-primary">Start Studying</a>
+        <a href="#subjects" class="btn btn-secondary">View Subjects</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <div class="stat-icon" style="background:rgba(255,77,139,0.15);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF4D8B" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div><div class="stat-num">12</div><div class="stat-label">Subjects</div></div>
         </div>
-        <div class="content-body" id="contentBody">
-            <!-- Content loaded dynamically -->
+        <div class="stat-pill">
+          <div class="stat-icon" style="background:rgba(0,212,255,0.15);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div><div class="stat-num">500+</div><div class="stat-label">Topics</div></div>
         </div>
+        <div class="stat-pill">
+          <div class="stat-icon" style="background:rgba(139,92,246,0.15);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div><div class="stat-num">Daily</div><div class="stat-label">Tracker</div></div>
+        </div>
+      </div>
     </div>
+    <div class="hero-visual">
+      <div class="orbit-ring orbit-ring-1"><div class="orbit-dot"></div></div>
+      <div class="orbit-ring orbit-ring-2"><div class="orbit-dot"></div></div>
+      <div class="orbit-ring orbit-ring-3"><div class="orbit-dot"></div></div>
+      <div class="hero-center">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Subject Data - This is where daily updates happen!
-        const subjectsData = {
-            environment: {
-                icon: '🌿',
-                title: 'Environment & Ecology',
-                color: 'sub-env',
-                topics: [
-                    { icon: '🌊', title: 'Aquatic Ecosystems', desc: 'Marine & freshwater systems', progress: 75 },
-                    { icon: '🦁', title: 'Biodiversity', desc: 'Species, hotspots, conservation', progress: 60 },
-                    { icon: '💨', title: 'Air Pollution', desc: 'Causes, effects, solutions', progress: 40 },
-                    { icon: '♻️', title: 'Climate Change', desc: 'Global warming, protocols', progress: 55 },
-                    { icon: '🏭', title: 'Environmental Laws', desc: 'Acts, policies, conventions', progress: 30 },
-                    { icon: '🌳', title: 'Forest Resources', desc: 'Types, distribution, management', progress: 45 }
-                ],
-                content: {
-                    'Aquatic Ecosystems': `
-                        <h2>🌊 Aquatic Ecosystems</h2>
-                        <div class="highlight-box">
-                            <strong>Key Concept:</strong> Aquatic ecosystems are classified based on salinity into Freshwater (<0.5 ppt) and Marine (~35 ppt).
-                        </div>
+<!-- Subjects Section -->
+<section class="subjects-section" id="subjects">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">All UPSC Subjects</h2>
+      <p class="section-subtitle">Comprehensive coverage of every subject in the UPSC Civil Services Examination syllabus</p>
+    </div>
+    <div class="subjects-grid" id="subjectsGrid"></div>
+  </div>
+</section>
 
-                        <h3>Classification of Aquatic Ecosystems</h3>
-                        <div class="info-card">
-                            <h4>🌊 Freshwater Ecosystems</h4>
-                            <p>Salinity less than 0.5 parts per thousand (ppt)</p>
-                            <ul>
-                                <li><strong>Lotic:</strong> Flowing water - Rivers, Streams, Springs</li>
-                                <li><strong>Lentic:</strong> Standing water - Ponds, Lakes, Wetlands</li>
-                            </ul>
-                        </div>
+<!-- Study Tracker -->
+<section class="tracker-section" id="tracker">
+  <canvas id="dot-grid-canvas"></canvas>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="section-header reveal">
+      <h2 class="section-title">Track Your Progress</h2>
+      <p class="section-subtitle">Monitor your daily study hours and stay consistent with your preparation</p>
+    </div>
+    <div class="tracker-cards" id="trackerCards"></div>
+  </div>
+</section>
 
-                        <div class="info-card">
-                            <h4>🐠 Marine Ecosystems</h4>
-                            <p>Average salinity of 35 ppt covering 71% of Earth's surface</p>
-                            <ul>
-                                <li><strong>Coastal Areas:</strong> Estuaries, coral reefs, mangroves</li>
-                                <li><strong>Open Oceans:</strong> Pelagic zone, deep sea</li>
-                                <li><strong>Upwelling Regions:</strong> Nutrient-rich, high productivity</li>
-                            </ul>
-                        </div>
+<!-- Resources Section -->
+<section class="resources-section" id="resources">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">Study Resources</h2>
+      <p class="section-subtitle">Curated resources to boost your UPSC preparation</p>
+    </div>
+    <div class="resources-grid" id="resourcesGrid"></div>
+  </div>
+</section>
 
-                        <h3>Depth Zones Based on Light</h3>
-                        <p><strong>Photic Zone (0-200m):</strong> Sunlight penetrates, photosynthesis occurs. Rich in phytoplankton.</p>
-                        <p><strong>Aphotic Zone (>200m):</strong> No sunlight. Organisms rely on marine snow and chemosynthesis.</p>
-                        <p><strong>Benthic Zone:</strong> Bottom region. Rich in decomposers and detritivores.</p>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-cta reveal">
+      <h3>Ready to Begin Your UPSC Journey?</h3>
+      <p>Start organizing your study plan today</p>
+      <a href="#subjects" class="btn btn-primary">Get Started</a>
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <div class="footer-brand">Let's Study</div>
+        <div class="footer-tagline">Your UPSC preparation companion</div>
+      </div>
+      <div class="footer-links">
+        <a href="#">Study Planner</a>
+        <a href="#">Syllabus</a>
+        <a href="#">PYQs</a>
+        <a href="#">Notes</a>
+      </div>
+    </div>
+    <div class="footer-copy">&copy; 2024 Let's Study. Built for UPSC aspirants.</div>
+  </div>
+</footer>
 
-                        <h3>Important Organisms</h3>
-                        <ul>
-                            <li><strong>Plankton:</strong> Drifting organisms (phytoplankton & zooplankton)</li>
-                            <li><strong>Nekton:</strong> Active swimmers (fish, squid, whales)</li>
-                            <li><strong>Benthos:</strong> Bottom dwellers (crabs, starfish, worms)</li>
-                            <li><strong>Periphyton:</strong> Attached to submerged surfaces</li>
-                        </ul>
+<script>
+// ===== MOBILE NAV =====
+function toggleMobile() {
+  const m = document.getElementById('navMobile');
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+}
 
-                        <div class="highlight-box">
-                            <strong>UPSC PYQ:</strong> "Discuss the significance of coral reefs for tropical marine ecosystems." (2018)
-                        </div>
-                    `,
-                    'Biodiversity': `
-                        <h2>🦁 Biodiversity</h2>
-                        <p>Biodiversity refers to the variety and variability of life on Earth.</p>
+// ===== PARTICLES =====
+const pCanvas = document.getElementById('particles-canvas');
+const pCtx = pCanvas.getContext('2d');
+let pW, pH;
+const PARTICLES = 60;
+const particles = [];
 
-                        <h3>Levels of Biodiversity</h3>
-                        <div class="info-card">
-                            <h4>1. Genetic Diversity</h4>
-                            <p>Variation of genes within a species. Example: Different rice varieties in India.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>2. Species Diversity</h4>
-                            <p>Variety of species in an area. India has ~91,000 animal species and 45,000 plant species.</p>
-                        </div>
-                        <div class="info-card">
-                            <h4>3. Ecosystem Diversity</h4>
-                            <p>Variety of habitats, communities, and ecological processes.</p>
-                        </div>
+function resizeParticles() {
+  pW = window.innerWidth;
+  pH = window.innerHeight;
+  pCanvas.width = pW;
+  pCanvas.height = pH;
+}
+resizeParticles();
+window.addEventListener('resize', resizeParticles);
 
-                        <h3>Biodiversity Hotspots in India</h3>
-                        <ul>
-                            <li>Western Ghats</li>
-                            <li>Eastern Himalaya</li>
-                            <li>Indo-Burma (includes Northeast India)</li>
-                            <li>Sundaland (Nicobar Islands)</li>
-                        </ul>
-                    `
-                }
-            },
-            polity: {
-                icon: '⚖️',
-                title: 'Indian Polity',
-                color: 'sub-polity',
-                topics: [
-                    { icon: '📜', title: 'Constitution', desc: 'Preamble, features, amendments', progress: 70 },
-                    { icon: '🏛️', title: 'Parliament', desc: 'Lok Sabha, Rajya Sabha', progress: 50 },
-                    { icon: '⚡', title: 'Executive', desc: 'President, PM, Council', progress: 45 },
-                    { icon: '👨‍⚖️', title: 'Judiciary', desc: 'Supreme Court, HC', progress: 60 },
-                    { icon: '🏘️', title: 'Federalism', desc: 'Centre-State relations', progress: 35 },
-                    { icon: '🗳️', title: 'Elections', desc: 'EC, process, reforms', progress: 40 }
-                ],
-                content: {
-                    'Constitution': `
-                        <h2>📜 Constitution of India</h2>
-                        <div class="highlight-box">
-                            Adopted on: <strong>26 November 1949</strong><br>
-                            Enforced on: <strong>26 January 1950</strong>
-                        </div>
-                        <h3>Key Features</h3>
-                        <ul>
-                            <li>Lengthiest written constitution</li>
-                            <li>Blend of rigidity and flexibility</li>
-                            <li>Parliamentary form of government</li>
-                            <li>Independent judiciary</li>
-                            <li>Single citizenship</li>
-                        </ul>
-                    `
-                }
-            },
-            economy: {
-                icon: '💰',
-                title: 'Indian Economy',
-                color: 'sub-economy',
-                topics: [
-                    { icon: '📊', title: 'GDP & Growth', desc: 'National income, sectors', progress: 55 },
-                    { icon: '🏦', title: 'Banking', desc: 'RBI, monetary policy', progress: 65 },
-                    { icon: '📈', title: 'Budget', desc: 'Fiscal policy, taxation', progress: 45 },
-                    { icon: '🌾', title: 'Agriculture', desc: 'Crops, reforms, MSP', progress: 50 },
-                    { icon: '🏭', title: 'Industry', desc: 'Make in India, MSME', progress: 40 },
-                    { icon: '🌍', title: 'Trade', desc: 'Exports, imports, WTO', progress: 35 }
-                ],
-                content: {}
-            },
-            history: {
-                icon: '🏛️',
-                title: 'Indian History',
-                color: 'sub-history',
-                topics: [
-                    { icon: '🏺', title: 'Ancient India', desc: 'Indus Valley, Vedic Age', progress: 60 },
-                    { icon: '⚔️', title: 'Medieval India', desc: 'Delhi Sultanate, Mughals', progress: 45 },
-                    { icon: '🇬🇧', title: 'Modern India', desc: '1857, Freedom struggle', progress: 70 },
-                    { icon: '📚', title: 'Culture', desc: 'Art, architecture, literature', progress: 55 },
-                    { icon: '🕉️', title: 'Religions', desc: 'Buddhism, Jainism, Bhakti', progress: 50 },
-                    { icon: '🗺️', title: 'World History', desc: 'Renaissance, World Wars', progress: 30 }
-                ],
-                content: {}
-            },
-            geography: {
-                icon: '🌍',
-                title: 'Geography',
-                color: 'sub-geo',
-                topics: [
-                    { icon: '🏔️', title: 'Physical Geo', desc: 'Landforms, climatology', progress: 65 },
-                    { icon: '👥', title: 'Human Geo', desc: 'Population, settlement', progress: 40 },
-                    { icon: '🗺️', title: 'Indian Geo', desc: 'Physiography, drainage', progress: 70 },
-                    { icon: '🌾', title: 'Resources', desc: 'Soil, minerals, energy', progress: 55 },
-                    { icon: '🌦️', title: 'Climate', desc: 'Monsoon, seasons', progress: 60 },
-                    { icon: '🌊', title: 'Oceanography', desc: 'Waves, tides, currents', progress: 45 }
-                ],
-                content: {}
-            },
-            science: {
-                icon: '🔬',
-                title: 'Science & Tech',
-                color: 'sub-science',
-                topics: [
-                    { icon: '🧬', title: 'Biology', desc: 'Cells, genetics, health', progress: 50 },
-                    { icon: '⚛️', title: 'Physics', desc: 'Mechanics, electronics', progress: 40 },
-                    { icon: '🧪', title: 'Chemistry', desc: 'Elements, compounds', progress: 35 },
-                    { icon: '🚀', title: 'Space', desc: 'ISRO, satellites, missions', progress: 70 },
-                    { icon: '💻', title: 'IT & AI', desc: 'Digital India, cybersecurity', progress: 55 },
-                    { icon: '⚕️', title: 'Health', desc: 'Diseases, vaccines, WHO', progress: 60 }
-                ],
-                content: {}
-            },
-            current: {
-                icon: '📰',
-                title: 'Current Affairs',
-                color: 'sub-current',
-                topics: [
-                    { icon: '📅', title: 'Daily News', desc: 'Important headlines', progress: 80 },
-                    { icon: '📊', title: 'Monthly Review', desc: 'Compiled monthly news', progress: 65 },
-                    { icon: '🏆', title: 'Awards', desc: 'National & international', progress: 50 },
-                    { icon: '🌍', title: 'International', desc: 'Bilateral, summits', progress: 60 },
-                    { icon: '⚖️', title: 'Judgements', desc: 'Important court rulings', progress: 45 },
-                    { icon: '📋', title: 'Schemes', desc: 'Government programmes', progress: 70 }
-                ],
-                content: {}
-            },
-            essay: {
-                icon: '✍️',
-                title: 'Essay Writing',
-                color: 'sub-essay',
-                topics: [
-                    { icon: '📝', title: 'Philosophy', desc: 'Ethics, values, society', progress: 45 },
-                    { icon: '🌱', title: 'Environment', desc: 'Sustainability, climate', progress: 55 },
-                    { icon: '💻', title: 'Technology', desc: 'Digital age, AI impact', progress: 50 },
-                    { icon: '👥', title: 'Social Issues', desc: 'Gender, education, health', progress: 60 },
-                    { icon: '🏛️', title: 'Governance', desc: 'Democracy, administration', progress: 40 },
-                    { icon: '🌍', title: 'Globalization', desc: 'Culture, economy, politics', progress: 35 }
-                ],
-                content: {}
-            }
-        };
+for (let i = 0; i < PARTICLES; i++) {
+  particles.push({
+    x: Math.random() * pW, y: Math.random() * pH,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
+    size: Math.random() * 2 + 0.5,
+    opacity: Math.random() * 0.4 + 0.1,
+  });
+}
 
-        let currentSubject = 'environment';
+function drawParticles() {
+  pCtx.clearRect(0, 0, pW, pH);
+  for (const p of particles) {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = pW; if (p.x > pW) p.x = 0;
+    if (p.y < 0) p.y = pH; if (p.y > pH) p.y = 0;
+  }
+  // connections
+  pCtx.strokeStyle = 'rgba(200,200,220,0.03)';
+  pCtx.lineWidth = 0.5;
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 150) {
+        pCtx.beginPath();
+        pCtx.moveTo(particles[i].x, particles[i].y);
+        pCtx.lineTo(particles[j].x, particles[j].y);
+        pCtx.stroke();
+      }
+    }
+  }
+  // dots
+  for (const p of particles) {
+    pCtx.beginPath();
+    pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    pCtx.fillStyle = `rgba(220,220,235,${p.opacity})`;
+    pCtx.fill();
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            showSubject('environment');
-            updateStreak();
-        });
+// ===== DOT GRID CANVAS =====
+const dCanvas = document.getElementById('dot-grid-canvas');
+const dCtx = dCanvas.getContext('2d');
+let dW, dH, dMouseX = -1000, dMouseY = -1000, dTargetX = -1000, dTargetY = -1000;
 
-        // Show subject details
-        function showSubject(subjectKey) {
-            currentSubject = subjectKey;
-            const subject = subjectsData[subjectKey];
+function resizeDotGrid() {
+  const parent = dCanvas.parentElement;
+  dW = parent.clientWidth;
+  dH = parent.clientHeight;
+  dCanvas.width = dW;
+  dCanvas.height = dH;
+}
+resizeDotGrid();
+window.addEventListener('resize', resizeDotGrid);
 
-            // Update detail panel
-            document.getElementById('detailIcon').className = 'detail-icon ' + subject.color;
-            document.getElementById('detailIcon').textContent = subject.icon;
-            document.getElementById('detailTitle').textContent = subject.title;
-            document.getElementById('detailSubtitle').textContent = subject.topics.length + ' topics • Updated today';
+dCanvas.addEventListener('mousemove', e => {
+  const r = dCanvas.getBoundingClientRect();
+  dTargetX = e.clientX - r.left;
+  dTargetY = e.clientY - r.top;
+});
+dCanvas.addEventListener('mouseleave', () => { dTargetX = -1000; dTargetY = -1000; });
 
-            // Update active state on circle
-            document.querySelectorAll('.subject-node').forEach(node => {
-                node.classList.remove('active');
-            });
-            event?.target?.closest('.subject-node')?.classList.add('active');
+function drawDotGrid() {
+  dMouseX += (dTargetX - dMouseX) * 0.1;
+  dMouseY += (dTargetY - dMouseY) * 0.1;
+  dCtx.clearRect(0, 0, dW, dH);
+  const spacing = 20;
+  for (let x = 0; x < dW; x += spacing) {
+    for (let y = 0; y < dH; y += spacing) {
+      const dx = x - dMouseX, dy = y - dMouseY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      let r = 1, c = 45;
+      if (dist < 150) {
+        const b = 1 - Math.pow(dist/150, 2);
+        r = 1 + 0.5 * b;
+        c = Math.floor(45 + 15 * b);
+      }
+      dCtx.beginPath();
+      dCtx.arc(x, y, r, 0, Math.PI * 2);
+      if (dist < 50) {
+        dCtx.shadowBlur = 6;
+        dCtx.shadowColor = 'rgba(255,255,255,0.1)';
+      } else {
+        dCtx.shadowBlur = 0;
+      }
+      dCtx.fillStyle = `rgb(${c},${c},${c})`;
+      dCtx.fill();
+    }
+  }
+  dCtx.shadowBlur = 0;
+  requestAnimationFrame(drawDotGrid);
+}
+drawDotGrid();
 
-            // Populate topics
-            const grid = document.getElementById('topicGrid');
-            grid.innerHTML = '';
+// ===== SUBJECTS DATA & RENDER =====
+const subjects = [
+  { name: 'History', desc: 'Ancient, Medieval & Modern Indian History', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>' },
+  { name: 'Geography', desc: 'Physical, Human & Indian Geography', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>' },
+  { name: 'Polity', desc: 'Constitution, Governance & Politics', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9m16-5H4a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M10 2v4m4-4v4"/></svg>' },
+  { name: 'Economy', desc: 'Indian Economy & Economic Development', gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>' },
+  { name: 'Environment', desc: 'Ecology, Biodiversity & Climate Change', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 5.8 17 2 17 2c1 3.9 0 7.5-2.4 10.2A7 7 0 0 1 11 20z"/><path d="M11 20v-8"/></svg>' },
+  { name: 'Science & Tech', desc: 'General Science & Technology Developments', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.04-2.04-7.36-.02-11.9 4.5"/></svg>' },
+  { name: 'Current Affairs', desc: 'National & International Current Events', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/><rect x="10" y="6" width="8" height="4" rx="1"/></svg>' },
+  { name: 'Ethics', desc: 'Integrity, Aptitude & Ethics in Governance', gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
+  { name: 'Art & Culture', desc: 'Indian Heritage, Art Forms & Culture', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>' },
+  { name: 'International Relations', desc: "India's Foreign Policy & Global Relations", gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 9V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v4"/><path d="M2 11h20"/><path d="M22 11v8a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-8"/><path d="M8 11V9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>' },
+  { name: 'Disaster Management', desc: 'Disaster Preparedness & Risk Reduction', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>' },
+  { name: 'Internal Security', desc: 'Internal Security Challenges & Solutions', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+];
 
-            subject.topics.forEach((topic, index) => {
-                const card = document.createElement('div');
-                card.className = 'topic-card';
-                card.innerHTML = `
-                    <div class="topic-icon">${topic.icon}</div>
-                    <h4>${topic.title}</h4>
-                    <p>${topic.desc}</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${topic.progress}%"></div>
-                    </div>
-                `;
-                card.onclick = () => showContent(topic.title);
-                grid.appendChild(card);
-            });
+const subjectsGrid = document.getElementById('subjectsGrid');
+subjects.forEach((s, i) => {
+  const card = document.createElement('div');
+  card.className = 'subject-card';
+  card.style.setProperty('--glow', s.glow);
+  card.style.setProperty('--glow-shadow', s.glowShadow);
+  card.style.transitionDelay = `${i * 0.08}s`;
+  card.innerHTML = `
+    <div class="subject-circle" style="background:${s.gradient};box-shadow:0 0 20px ${s.glowShadow};">${s.icon}</div>
+    <div class="subject-info">
+      <h3>${s.name}</h3>
+      <p>${s.desc}</p>
+    </div>
+  `;
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+  subjectsGrid.appendChild(card);
+});
+
+// ===== TRACKER CARDS =====
+const trackers = [
+  { num: 4.5, dec: 1, label: 'Hours Today', color: '#FF4D8B', shadow: '0 0 30px rgba(255,77,139,0.25)' },
+  { num: 35, dec: 0, label: 'Hours This Week', color: '#00D4FF', shadow: '0 0 30px rgba(0,212,255,0.25)' },
+  { num: 12, dec: 0, label: 'Day Streak', color: '#8B5CF6', shadow: '0 0 30px rgba(139,92,246,0.25)' },
+];
+
+const trackerContainer = document.getElementById('trackerCards');
+trackers.forEach((t, i) => {
+  const card = document.createElement('div');
+  card.className = 'tracker-card';
+  card.style.setProperty('--hover-shadow', t.shadow);
+  card.style.setProperty('--accent', t.color + '40');
+  card.style.transitionDelay = `${i * 0.15}s`;
+  card.innerHTML = `
+    <div class="tracker-num" data-target="${t.num}" data-dec="${t.dec}">0</div>
+    <div class="tracker-line" style="background:${t.color};"></div>
+    <div class="tracker-label">${t.label}</div>
+  `;
+  trackerContainer.appendChild(card);
+});
+
+// ===== RESOURCE CARDS =====
+const resources = [
+  { title: 'Study Planner', desc: 'Create and manage your daily study schedule', color: '#FF4D8B', bg: 'rgba(255,77,139,0.08)', shadow: '0 0 30px rgba(255,77,139,0.2)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' },
+  { title: 'Syllabus', desc: 'Complete UPSC syllabus with topic breakdown', color: '#00D4FF', bg: 'rgba(0,212,255,0.08)', shadow: '0 0 30px rgba(0,212,255,0.2)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>' },
+  { title: 'Previous Year Papers', desc: 'Access solved papers from last 10 years', color: '#8B5CF6', bg: 'rgba(139,92,246,0.08)', shadow: '0 0 30px rgba(139,92,246,0.2)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>' },
+  { title: 'Study Notes', desc: 'Comprehensive notes for all subjects', color: '#22C55E', bg: 'rgba(34,197,94,0.08)', shadow: '0 0 30px rgba(34,197,94,0.2)', icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>' },
+];
+
+const resourcesGrid = document.getElementById('resourcesGrid');
+resources.forEach((r, i) => {
+  const card = document.createElement('div');
+  card.className = 'resource-card';
+  card.style.setProperty('--hover-shadow', r.shadow);
+  card.style.transitionDelay = `${i * 0.1}s`;
+  card.innerHTML = `
+    <div class="resource-icon" style="background:${r.bg};">${r.icon.replace('currentColor', r.color)}</div>
+    <h3>${r.title}</h3>
+    <p>${r.desc}</p>
+  `;
+  resourcesGrid.appendChild(card);
+});
+
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal, .subject-card, .tracker-card, .resource-card').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// ===== COUNT UP ANIMATION =====
+let counted = false;
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !counted) {
+      counted = true;
+      document.querySelectorAll('.tracker-num').forEach(el => {
+        const target = parseFloat(el.dataset.target);
+        const dec = parseInt(el.dataset.dec);
+        const duration = 2500;
+        const start = performance.now();
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          const current = eased * target;
+          el.textContent = dec > 0 ? current.toFixed(dec) : Math.floor(current).toString();
+          if (progress < 1) requestAnimationFrame(update);
         }
+        requestAnimationFrame(update);
+      });
+    }
+  });
+}, { threshold: 0.5 });
 
-        // Show content viewer
-        function showContent(topicTitle) {
-            const subject = subjectsData[currentSubject];
-            const content = subject.content[topicTitle];
+const trackerSection = document.getElementById('tracker');
+if (trackerSection) countObserver.observe(trackerSection);
 
-            if (content) {
-                document.getElementById('contentTitle').textContent = topicTitle;
-                document.getElementById('contentBody').innerHTML = content;
-                document.getElementById('contentViewer').style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            } else {
-                // Show placeholder for topics without content yet
-                document.getElementById('contentTitle').textContent = topicTitle;
-                document.getElementById('contentBody').innerHTML = `
-                    <div style="text-align: center; padding: 3rem 1rem;">
-                        <div style="font-size: 4rem; margin-bottom: 1rem;">🚧</div>
-                        <h2>Content Coming Soon!</h2>
-                        <p style="color: var(--text-secondary); margin-top: 1rem;">
-                            This topic is scheduled for tomorrow's update.<br>
-                            Check back daily for new content!
-                        </p>
-                        <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 12px;">
-                            <p style="font-size: 0.9rem;">📅 <strong>Daily Update Schedule:</strong> New topics added every morning at 6 AM</p>
-                        </div>
-                    </div>
-                `;
-                document.getElementById('contentViewer').style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        }
+// ===== SMOOTH SCROLL FOR ANCHORS =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Close mobile menu
+    document.getElementById('navMobile').style.display = 'none';
+  });
+});
+</script>
 
-        // Close content viewer
-        function closeContent() {
-            document.getElementById('contentViewer').style.display = 'none';
-            document.body.style.overflow = '';
-        }
-
-        // Bottom navigation
-        function showTab(tab) {
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            event.currentTarget.classList.add('active');
-
-            if (tab === 'home') {
-                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        // Update streak
-        function updateStreak() {
-            const streak = localStorage.getItem('upscStreak') || 5;
-            document.getElementById('streakCount').textContent = streak;
-        }
-
-        // Search functionality
-        document.querySelector('.search-bar').addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            if (query.length < 2) return;
-
-            // Simple search - can be expanded
-            console.log('Searching for:', query);
-        });
-    </script>
 </body>
 </html>
