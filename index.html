@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Let's Study</title>
+<title>Maadhur</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
   :root {
     --deep-void: #0A0B0E;
@@ -17,6 +17,9 @@
     --blue: #00D4FF;
     --violet: #8B5CF6;
     --green: #22C55E;
+    --orange: #F59E0B;
+    --red: #EF4444;
+    --cyan: #06B6D4;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,7 +34,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Fixed container - one screen */
   .app {
     max-width: 430px;
     margin: 0 auto;
@@ -100,51 +102,7 @@
   .hero-desc {
     color: var(--muted); font-size: 13px;
     line-height: 1.5; max-width: 320px;
-    margin: 0 auto 12px;
-  }
-
-  /* ===== QUICK STATS ROW ===== */
-  .stats-row {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-bottom: 12px;
-  }
-  .stat-chip {
-    display: flex; align-items: center; gap: 6px;
-    padding: 6px 12px; border-radius: 20px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
-    font-size: 11px; font-weight: 600;
-  }
-  .stat-chip .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-  }
-  .stat-chip.pink .dot { background: var(--pink); box-shadow: 0 0 6px var(--pink); }
-  .stat-chip.blue .dot { background: var(--blue); box-shadow: 0 0 6px var(--blue); }
-  .stat-chip.violet .dot { background: var(--violet); box-shadow: 0 0 6px var(--violet); }
-
-  /* ===== CTA BUTTONS ===== */
-  .cta-row {
-    display: flex; gap: 10px;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-  .btn {
-    padding: 10px 20px; border-radius: 12px;
-    font-weight: 600; font-size: 13px;
-    text-decoration: none; border: none;
-    cursor: pointer; transition: all 0.3s ease;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .btn-primary {
-    background: var(--pink); color: white;
-    box-shadow: 0 4px 20px rgba(255,77,139,0.3);
-  }
-  .btn-primary:active { transform: scale(0.96); }
-  .btn-secondary {
-    background: transparent; color: var(--text);
-    border: 1px solid var(--border);
+    margin: 0 auto 16px;
   }
 
   /* ===== SUBJECTS GRID ===== */
@@ -222,31 +180,6 @@
   .nav-item.active, .nav-item:hover { color: var(--pink); }
   .nav-item svg { width: 22px; height: 22px; }
 
-  /* ===== MINI TRACKER OVERLAY ===== */
-  .tracker-float {
-    position: fixed;
-    bottom: 80px; right: 16px;
-    z-index: 50;
-    display: flex; flex-direction: column;
-    gap: 6px;
-  }
-  .tracker-pill {
-    padding: 8px 14px; border-radius: 20px;
-    background: rgba(19,19,22,0.9);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.06);
-    display: flex; align-items: center; gap: 8px;
-    font-size: 11px; font-weight: 600;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  }
-  .tracker-pill .num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px; font-weight: 700;
-  }
-  .tracker-pill.pink .num { color: var(--pink); }
-  .tracker-pill.blue .num { color: var(--blue); }
-  .tracker-pill.violet .num { color: var(--violet); }
-
   /* Animations */
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -272,29 +205,15 @@
   <!-- Header -->
   <div class="header anim-in">
     <div>
-      <div class="brand">Let's Study</div>
+      <div class="brand">Maadhur</div>
       <div class="header-tag">UPSC Prep Hub</div>
     </div>
   </div>
 
   <!-- Hero -->
   <div class="hero anim-in delay-1">
-    <h1 class="hero-title">Let's Study</h1>
+    <h1 class="hero-title">Maadhur</h1>
     <p class="hero-desc">Your comprehensive UPSC preparation companion. All subjects, progress tracking & resources in one place.</p>
-
-    <div class="stats-row">
-      <div class="stat-chip pink"><span class="dot"></span>12 Subjects</div>
-      <div class="stat-chip blue"><span class="dot"></span>500+ Topics</div>
-      <div class="stat-chip violet"><span class="dot"></span>12 Day Streak</div>
-    </div>
-
-    <div class="cta-row">
-      <a href="#subjects" class="btn btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Start Studying
-      </a>
-      <a href="#subjects" class="btn btn-secondary">View All</a>
-    </div>
   </div>
 
   <!-- Subjects -->
@@ -325,36 +244,19 @@
 
 </div>
 
-<!-- Floating Tracker -->
-<div class="tracker-float anim-in delay-3">
-  <div class="tracker-pill pink">
-    <span class="num">4.5h</span>
-    <span style="color:var(--muted);font-size:10px;">Today</span>
-  </div>
-  <div class="tracker-pill blue">
-    <span class="num">35h</span>
-    <span style="color:var(--muted);font-size:10px;">Week</span>
-  </div>
-  <div class="tracker-pill violet">
-    <span class="num">12</span>
-    <span style="color:var(--muted);font-size:10px;">Streak</span>
-  </div>
-</div>
-
 <script>
 const subjects = [
-  { name: 'History', desc: 'Ancient, Medieval & Modern', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>' },
   { name: 'Geography', desc: 'Physical, Human & Indian', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>' },
+  { name: 'History', desc: 'Ancient, Medieval & Modern', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>' },
   { name: 'Polity', desc: 'Constitution & Governance', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9m16-5H4a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M10 2v4m4-4v4"/></svg>' },
-  { name: 'Economy', desc: 'Indian Economy & Development', gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>' },
-  { name: 'Environment', desc: 'Ecology & Climate Change', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 5.8 17 2 17 2c1 3.9 0 7.5-2.4 10.2A7 7 0 0 1 11 20z"/><path d="M11 20v-8"/></svg>' },
+  { name: 'Economics', desc: 'Indian Economy & Development', gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>' },
   { name: 'Science & Tech', desc: 'General Science & Tech', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.04-2.04-7.36-.02-11.9 4.5"/></svg>' },
-  { name: 'Current Affairs', desc: 'National & International', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/><rect x="10" y="6" width="8" height="4" rx="1"/></svg>' },
   { name: 'Ethics', desc: 'Integrity & Aptitude', gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
-  { name: 'Art & Culture', desc: 'Heritage & Art Forms', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>' },
-  { name: 'Int. Relations', desc: "India's Foreign Policy", gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 9V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v4"/><path d="M2 11h20"/><path d="M22 11v8a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-8"/><path d="M8 11V9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>' },
-  { name: 'Disaster Mgmt', desc: 'Preparedness & Risk', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>' },
-  { name: 'Int. Security', desc: 'Security Challenges', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+  { name: 'Essay', desc: 'Essay Writing Practice', gradient: 'linear-gradient(135deg,#F59E0B,#FBBF24)', glow: 'rgba(245,158,11,0.4)', glowShadow: 'rgba(245,158,11,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>' },
+  { name: 'Sociology', desc: 'Social Structure & Change', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
+  { name: 'Academic Writing', desc: 'Writing Skills & Techniques', gradient: 'linear-gradient(135deg,#06B6D4,#22D3EE)', glow: 'rgba(6,182,212,0.4)', glowShadow: 'rgba(6,182,212,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>' },
+  { name: 'Computer', desc: 'Basics & Applications', gradient: 'linear-gradient(135deg,#EF4444,#F87171)', glow: 'rgba(239,68,68,0.4)', glowShadow: 'rgba(239,68,68,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>' },
+  { name: 'Assamese', desc: 'Language & Literature', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>' },
 ];
 
 const grid = document.getElementById('subjectsGrid');
