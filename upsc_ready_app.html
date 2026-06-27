@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>UPSC Ready - IAS Preparation Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a3e;
+            --bg-card: rgba(255,255,255,0.05);
+            --accent-gold: #ffd700;
+            --accent-orange: #ff6b35;
+            --accent-teal: #00d4aa;
+            --accent-purple: #9d4edd;
+            --accent-blue: #4cc9f0;
+            --accent-red: #e63946;
+            --accent-green: #2a9d8f;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7);
+            --text-muted: rgba(255,255,255,0.5);
+            --border: rgba(255,255,255,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* App Container */
+        .app-container {
+            max-width: 430px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, #1a1a2e 100%);
+        }
+
+        /* Header */
+        .header {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255,215,0,0.1);
+            border-color: var(--accent-gold);
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,107,53,0.1));
+            border-radius: 20px;
+            margin: 1rem 1.5rem;
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .welcome-banner h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .welcome-banner p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .streak-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: rgba(255,215,0,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-top: 0.5rem;
+        }
+
+        /* Circular Menu Section */
+        .circle-section {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Circular Navigation */
+        .circle-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+        }
+
+        .center-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 10;
+            box-shadow: 0 0 40px rgba(255,215,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
+            50% { box-shadow: 0 0 60px rgba(255,215,0,0.5); }
+        }
+
+        .center-logo span {
+            font-size: 1.8rem;
+        }
+
+        .center-logo small {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--bg-primary);
+        }
+
+        .orbit-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            border: 1px dashed rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .subject-node {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            font-size: 1.3rem;
+            z-index: 5;
+        }
+
+        .subject-node:hover {
+            transform: scale(1.15);
+            z-index: 20;
+        }
+
+        .subject-node.active {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(255,215,0,0.4);
+        }
+
+        .subject-node .node-label {
+            position: absolute;
+            bottom: -20px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            white-space: nowrap;
+            color: var(--text-secondary);
+        }
+
+        /* Subject Colors */
+        .sub-env { background: linear-gradient(135deg, #2a9d8f, #264653); }
+        .sub-polity { background: linear-gradient(135deg, #e63946, #9d0208); }
+        .sub-economy { background: linear-gradient(135deg, #f4a261, #e76f51); }
+        .sub-history { background: linear-gradient(135deg, #9d4edd, #7b2cbf); }
+        .sub-geo { background: linear-gradient(135deg, #4cc9f0, #4361ee); }
+        .sub-science { background: linear-gradient(135deg, #2a9d8f, #1d3557); }
+        .sub-current { background: linear-gradient(135deg, #ff6b35, #f7931e); }
+        .sub-essay { background: linear-gradient(135deg, #ffd700, #ff8c00); }
+
+        /* Subject Detail Panel */
+        .detail-panel {
+            background: var(--bg-card);
+            border-radius: 24px 24px 0 0;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border-top: 1px solid var(--border);
+            min-height: 300px;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .detail-title h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .detail-title p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Topic Cards */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        .topic-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .topic-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,215,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .topic-card .topic-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-card h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .topic-card p {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .topic-card .progress-bar {
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .topic-card .progress-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-orange));
+        }
+
+        /* Content Viewer */
+        .content-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 1000;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .content-header {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .content-body {
+            padding: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .content-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .content-body h3 {
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--accent-orange);
+        }
+
+        .content-body p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .content-body ul {
+            margin-left: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .content-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: rgba(255,215,0,0.1);
+            border-left: 3px solid var(--accent-gold);
+            padding: 1rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            border: 1px solid var(--border);
+        }
+
+        .info-card h4 {
+            color: var(--accent-teal);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 430px;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.8rem 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+            cursor: pointer;
+            padding: 0.3rem 1rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255,215,0,0.1);
+        }
+
+        .nav-item span {
+            font-size: 1.3rem;
+        }
+
+        .nav-item small {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .nav-item.active small {
+            color: var(--accent-gold);
+        }
+
+        /* Daily Update Badge */
+        .update-badge {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            color: var(--bg-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 99;
+            animation: bounce 2s infinite;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Search Bar */
+        .search-container {
+            padding: 0 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-bar:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(255,215,0,0.1);
+        }
+
+        .search-bar::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Responsive padding for bottom nav */
+        .main-content {
+            padding-bottom: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">UPSC Ready</div>
+            <div class="header-icons">
+                <div class="icon-btn">🔔</div>
+                <div class="icon-btn">👤</div>
+            </div>
+        </header>
+
+        <!-- Update Badge -->
+        <div class="update-badge">📅 Updated Today!</div>
+
+        <div class="main-content">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <h2>Good Morning, Aspirant! ☀️</h2>
+                <p>Your daily dose of UPSC preparation is ready.</p>
+                <div class="streak-badge">
+                    🔥 <span id="streakCount">5</span> Day Streak
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="🔍 Search topics, subjects, keywords...">
+            </div>
+
+            <!-- Circular Subject Menu -->
+            <div class="circle-section">
+                <div class="section-title">📚 Choose Your Subject</div>
+
+                <div class="circle-container">
+                    <div class="center-logo">
+                        <span>🇮🇳</span>
+                        <small>UPSC</small>
+                    </div>
+                    <div class="orbit-ring"></div>
+
+                    <!-- Subject Nodes positioned in circle -->
+                    <div class="subject-node sub-env" style="top: 0; left: 50%; transform: translate(-50%, -50%);" onclick="showSubject('environment')">
+                        🌿
+                        <span class="node-label">Environment</span>
+                    </div>
+
+                    <div class="subject-node sub-polity" style="top: 15%; right: 5%; transform: translate(50%, -50%);" onclick="showSubject('polity')">
+                        ⚖️
+                        <span class="node-label">Polity</span>
+                    </div>
+
+                    <div class="subject-node sub-economy" style="top: 50%; right: 0; transform: translate(50%, -50%);" onclick="showSubject('economy')">
+                        💰
+                        <span class="node-label">Economy</span>
+                    </div>
+
+                    <div class="subject-node sub-history" style="bottom: 15%; right: 5%; transform: translate(50%, 50%);" onclick="showSubject('history')">
+                        🏛️
+                        <span class="node-label">History</span>
+                    </div>
+
+                    <div class="subject-node sub-geo" style="bottom: 0; left: 50%; transform: translate(-50%, 50%);" onclick="showSubject('geography')">
+                        🌍
+                        <span class="node-label">Geography</span>
+                    </div>
+
+                    <div class="subject-node sub-science" style="bottom: 15%; left: 5%; transform: translate(-50%, 50%);" onclick="showSubject('science')">
+                        🔬
+                        <span class="node-label">Science</span>
+                    </div>
+
+                    <div class="subject-node sub-current" style="top: 50%; left: 0; transform: translate(-50%, -50%);" onclick="showSubject('current')">
+                        📰
+                        <span class="node-label">Current</span>
+                    </div>
+
+                    <div class="subject-node sub-essay" style="top: 15%; left: 5%; transform: translate(-50%, -50%);" onclick="showSubject('essay')">
+                        ✍️
+                        <span class="node-label">Essay</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subject Detail Panel -->
+            <div class="detail-panel" id="detailPanel">
+                <div class="detail-header">
+                    <div class="detail-icon sub-env" id="detailIcon">🌿</div>
+                    <div class="detail-title">
+                        <h3 id="detailTitle">Environment & Ecology</h3>
+                        <p id="detailSubtitle">12 topics • Updated today</p>
+                    </div>
+                </div>
+
+                <div class="topic-grid" id="topicGrid">
+                    <!-- Topics will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item active" onclick="showTab('home')">
+                <span>🏠</span>
+                <small>Home</small>
+            </div>
+            <div class="nav-item" onclick="showTab('subjects')">
+                <span>📚</span>
+                <small>Subjects</small>
+            </div>
+            <div class="nav-item" onclick="showTab('bookmarks')">
+                <span>🔖</span>
+                <small>Saved</small>
+            </div>
+            <div class="nav-item" onclick="showTab('tests')">
+                <span>📝</span>
+                <small>Tests</small>
+            </div>
+            <div class="nav-item" onclick="showTab('profile')">
+                <span>👤</span>
+                <small>Profile</small>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Content Viewer (Hidden by default) -->
+    <div class="content-viewer" id="contentViewer">
+        <div class="content-header">
+            <div class="back-btn" onclick="closeContent()">←</div>
+            <div>
+                <h3 style="font-size: 1rem;" id="contentTitle">Topic Title</h3>
+            </div>
+        </div>
+        <div class="content-body" id="contentBody">
+            <!-- Content loaded dynamically -->
+        </div>
+    </div>
+
+    <script>
+        // Subject Data - This is where daily updates happen!
+        const subjectsData = {
+            environment: {
+                icon: '🌿',
+                title: 'Environment & Ecology',
+                color: 'sub-env',
+                topics: [
+                    { icon: '🌊', title: 'Aquatic Ecosystems', desc: 'Marine & freshwater systems', progress: 75 },
+                    { icon: '🦁', title: 'Biodiversity', desc: 'Species, hotspots, conservation', progress: 60 },
+                    { icon: '💨', title: 'Air Pollution', desc: 'Causes, effects, solutions', progress: 40 },
+                    { icon: '♻️', title: 'Climate Change', desc: 'Global warming, protocols', progress: 55 },
+                    { icon: '🏭', title: 'Environmental Laws', desc: 'Acts, policies, conventions', progress: 30 },
+                    { icon: '🌳', title: 'Forest Resources', desc: 'Types, distribution, management', progress: 45 }
+                ],
+                content: {
+                    'Aquatic Ecosystems': `
+                        <h2>🌊 Aquatic Ecosystems</h2>
+                        <div class="highlight-box">
+                            <strong>Key Concept:</strong> Aquatic ecosystems are classified based on salinity into Freshwater (<0.5 ppt) and Marine (~35 ppt).
+                        </div>
+
+                        <h3>Classification of Aquatic Ecosystems</h3>
+                        <div class="info-card">
+                            <h4>🌊 Freshwater Ecosystems</h4>
+                            <p>Salinity less than 0.5 parts per thousand (ppt)</p>
+                            <ul>
+                                <li><strong>Lotic:</strong> Flowing water - Rivers, Streams, Springs</li>
+                                <li><strong>Lentic:</strong> Standing water - Ponds, Lakes, Wetlands</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h4>🐠 Marine Ecosystems</h4>
+                            <p>Average salinity of 35 ppt covering 71% of Earth's surface</p>
+                            <ul>
+                                <li><strong>Coastal Areas:</strong> Estuaries, coral reefs, mangroves</li>
+                                <li><strong>Open Oceans:</strong> Pelagic zone, deep sea</li>
+                                <li><strong>Upwelling Regions:</strong> Nutrient-rich, high productivity</li>
+                            </ul>
+                        </div>
+
+                        <h3>Depth Zones Based on Light</h3>
+                        <p><strong>Photic Zone (0-200m):</strong> Sunlight penetrates, photosynthesis occurs. Rich in phytoplankton.</p>
+                        <p><strong>Aphotic Zone (>200m):</strong> No sunlight. Organisms rely on marine snow and chemosynthesis.</p>
+                        <p><strong>Benthic Zone:</strong> Bottom region. Rich in decomposers and detritivores.</p>
+
+                        <h3>Important Organisms</h3>
+                        <ul>
+                            <li><strong>Plankton:</strong> Drifting organisms (phytoplankton & zooplankton)</li>
+                            <li><strong>Nekton:</strong> Active swimmers (fish, squid, whales)</li>
+                            <li><strong>Benthos:</strong> Bottom dwellers (crabs, starfish, worms)</li>
+                            <li><strong>Periphyton:</strong> Attached to submerged surfaces</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <strong>UPSC PYQ:</strong> "Discuss the significance of coral reefs for tropical marine ecosystems." (2018)
+                        </div>
+                    `,
+                    'Biodiversity': `
+                        <h2>🦁 Biodiversity</h2>
+                        <p>Biodiversity refers to the variety and variability of life on Earth.</p>
+
+                        <h3>Levels of Biodiversity</h3>
+                        <div class="info-card">
+                            <h4>1. Genetic Diversity</h4>
+                            <p>Variation of genes within a species. Example: Different rice varieties in India.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>2. Species Diversity</h4>
+                            <p>Variety of species in an area. India has ~91,000 animal species and 45,000 plant species.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>3. Ecosystem Diversity</h4>
+                            <p>Variety of habitats, communities, and ecological processes.</p>
+                        </div>
+
+                        <h3>Biodiversity Hotspots in India</h3>
+                        <ul>
+                            <li>Western Ghats</li>
+                            <li>Eastern Himalaya</li>
+                            <li>Indo-Burma (includes Northeast India)</li>
+                            <li>Sundaland (Nicobar Islands)</li>
+                        </ul>
+                    `
+                }
+            },
+            polity: {
+                icon: '⚖️',
+                title: 'Indian Polity',
+                color: 'sub-polity',
+                topics: [
+                    { icon: '📜', title: 'Constitution', desc: 'Preamble, features, amendments', progress: 70 },
+                    { icon: '🏛️', title: 'Parliament', desc: 'Lok Sabha, Rajya Sabha', progress: 50 },
+                    { icon: '⚡', title: 'Executive', desc: 'President, PM, Council', progress: 45 },
+                    { icon: '👨‍⚖️', title: 'Judiciary', desc: 'Supreme Court, HC', progress: 60 },
+                    { icon: '🏘️', title: 'Federalism', desc: 'Centre-State relations', progress: 35 },
+                    { icon: '🗳️', title: 'Elections', desc: 'EC, process, reforms', progress: 40 }
+                ],
+                content: {
+                    'Constitution': `
+                        <h2>📜 Constitution of India</h2>
+                        <div class="highlight-box">
+                            Adopted on: <strong>26 November 1949</strong><br>
+                            Enforced on: <strong>26 January 1950</strong>
+                        </div>
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Lengthiest written constitution</li>
+                            <li>Blend of rigidity and flexibility</li>
+                            <li>Parliamentary form of government</li>
+                            <li>Independent judiciary</li>
+                            <li>Single citizenship</li>
+                        </ul>
+                    `
+                }
+            },
+            economy: {
+                icon: '💰',
+                title: 'Indian Economy',
+                color: 'sub-economy',
+                topics: [
+                    { icon: '📊', title: 'GDP & Growth', desc: 'National income, sectors', progress: 55 },
+                    { icon: '🏦', title: 'Banking', desc: 'RBI, monetary policy', progress: 65 },
+                    { icon: '📈', title: 'Budget', desc: 'Fiscal policy, taxation', progress: 45 },
+                    { icon: '🌾', title: 'Agriculture', desc: 'Crops, reforms, MSP', progress: 50 },
+                    { icon: '🏭', title: 'Industry', desc: 'Make in India, MSME', progress: 40 },
+                    { icon: '🌍', title: 'Trade', desc: 'Exports, imports, WTO', progress: 35 }
+                ],
+                content: {}
+            },
+            history: {
+                icon: '🏛️',
+                title: 'Indian History',
+                color: 'sub-history',
+                topics: [
+                    { icon: '🏺', title: 'Ancient India', desc: 'Indus Valley, Vedic Age', progress: 60 },
+                    { icon: '⚔️', title: 'Medieval India', desc: 'Delhi Sultanate, Mughals', progress: 45 },
+                    { icon: '🇬🇧', title: 'Modern India', desc: '1857, Freedom struggle', progress: 70 },
+                    { icon: '📚', title: 'Culture', desc: 'Art, architecture, literature', progress: 55 },
+                    { icon: '🕉️', title: 'Religions', desc: 'Buddhism, Jainism, Bhakti', progress: 50 },
+                    { icon: '🗺️', title: 'World History', desc: 'Renaissance, World Wars', progress: 30 }
+                ],
+                content: {}
+            },
+            geography: {
+                icon: '🌍',
+                title: 'Geography',
+                color: 'sub-geo',
+                topics: [
+                    { icon: '🏔️', title: 'Physical Geo', desc: 'Landforms, climatology', progress: 65 },
+                    { icon: '👥', title: 'Human Geo', desc: 'Population, settlement', progress: 40 },
+                    { icon: '🗺️', title: 'Indian Geo', desc: 'Physiography, drainage', progress: 70 },
+                    { icon: '🌾', title: 'Resources', desc: 'Soil, minerals, energy', progress: 55 },
+                    { icon: '🌦️', title: 'Climate', desc: 'Monsoon, seasons', progress: 60 },
+                    { icon: '🌊', title: 'Oceanography', desc: 'Waves, tides, currents', progress: 45 }
+                ],
+                content: {}
+            },
+            science: {
+                icon: '🔬',
+                title: 'Science & Tech',
+                color: 'sub-science',
+                topics: [
+                    { icon: '🧬', title: 'Biology', desc: 'Cells, genetics, health', progress: 50 },
+                    { icon: '⚛️', title: 'Physics', desc: 'Mechanics, electronics', progress: 40 },
+                    { icon: '🧪', title: 'Chemistry', desc: 'Elements, compounds', progress: 35 },
+                    { icon: '🚀', title: 'Space', desc: 'ISRO, satellites, missions', progress: 70 },
+                    { icon: '💻', title: 'IT & AI', desc: 'Digital India, cybersecurity', progress: 55 },
+                    { icon: '⚕️', title: 'Health', desc: 'Diseases, vaccines, WHO', progress: 60 }
+                ],
+                content: {}
+            },
+            current: {
+                icon: '📰',
+                title: 'Current Affairs',
+                color: 'sub-current',
+                topics: [
+                    { icon: '📅', title: 'Daily News', desc: 'Important headlines', progress: 80 },
+                    { icon: '📊', title: 'Monthly Review', desc: 'Compiled monthly news', progress: 65 },
+                    { icon: '🏆', title: 'Awards', desc: 'National & international', progress: 50 },
+                    { icon: '🌍', title: 'International', desc: 'Bilateral, summits', progress: 60 },
+                    { icon: '⚖️', title: 'Judgements', desc: 'Important court rulings', progress: 45 },
+                    { icon: '📋', title: 'Schemes', desc: 'Government programmes', progress: 70 }
+                ],
+                content: {}
+            },
+            essay: {
+                icon: '✍️',
+                title: 'Essay Writing',
+                color: 'sub-essay',
+                topics: [
+                    { icon: '📝', title: 'Philosophy', desc: 'Ethics, values, society', progress: 45 },
+                    { icon: '🌱', title: 'Environment', desc: 'Sustainability, climate', progress: 55 },
+                    { icon: '💻', title: 'Technology', desc: 'Digital age, AI impact', progress: 50 },
+                    { icon: '👥', title: 'Social Issues', desc: 'Gender, education, health', progress: 60 },
+                    { icon: '🏛️', title: 'Governance', desc: 'Democracy, administration', progress: 40 },
+                    { icon: '🌍', title: 'Globalization', desc: 'Culture, economy, politics', progress: 35 }
+                ],
+                content: {}
+            }
+        };
+
+        let currentSubject = 'environment';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSubject('environment');
+            updateStreak();
+        });
+
+        // Show subject details
+        function showSubject(subjectKey) {
+            currentSubject = subjectKey;
+            const subject = subjectsData[subjectKey];
+
+            // Update detail panel
+            document.getElementById('detailIcon').className = 'detail-icon ' + subject.color;
+            document.getElementById('detailIcon').textContent = subject.icon;
+            document.getElementById('detailTitle').textContent = subject.title;
+            document.getElementById('detailSubtitle').textContent = subject.topics.length + ' topics • Updated today';
+
+            // Update active state on circle
+            document.querySelectorAll('.subject-node').forEach(node => {
+                node.classList.remove('active');
+            });
+            event?.target?.closest('.subject-node')?.classList.add('active');
+
+            // Populate topics
+            const grid = document.getElementById('topicGrid');
+            grid.innerHTML = '';
+
+            subject.topics.forEach((topic, index) => {
+                const card = document.createElement('div');
+                card.className = 'topic-card';
+                card.innerHTML = `
+                    <div class="topic-icon">${topic.icon}</div>
+                    <h4>${topic.title}</h4>
+                    <p>${topic.desc}</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${topic.progress}%"></div>
+                    </div>
+                `;
+                card.onclick = () => showContent(topic.title);
+                grid.appendChild(card);
+            });
+        }
+
+        // Show content viewer
+        function showContent(topicTitle) {
+            const subject = subjectsData[currentSubject];
+            const content = subject.content[topicTitle];
+
+            if (content) {
+                document.getElementById('contentTitle').textContent = topicTitle;
+                document.getElementById('contentBody').innerHTML = content;
+                document.getElementById('contentViewer').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Show placeholder for topics without content yet
+                document.getElementById('contentTitle').textContent = topicTitle;
+                document.getElementById('contentBody').innerHTML = `
+                    <div style="text-align: center; padding: 3rem 1rem;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">🚧</div>
+                        <h2>Content Coming Soon!</h2>
+                        <p style="color: var(--text-secondary); margin-top: 1rem;">
+                            This topic is scheduled for tomorrow's update.<br>
+                            Check back daily for new content!
+                        </p>
+                        <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 12px;">
+                            <p style="font-size: 0.9rem;">📅 <strong>Daily Update Schedule:</strong> New topics added every morning at 6 AM</p>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('contentViewer').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close content viewer
+        function closeContent() {
+            document.getElementById('contentViewer').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Bottom navigation
+        function showTab(tab) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+
+            if (tab === 'home') {
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Update streak
+        function updateStreak() {
+            const streak = localStorage.getItem('upscStreak') || 5;
+            document.getElementById('streakCount').textContent = streak;
+        }
+
+        // Search functionality
+        document.querySelector('.search-bar').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) return;
+
+            // Simple search - can be expanded
+            console.log('Searching for:', query);
+        });
+    </script>
+</body>
+</html>
