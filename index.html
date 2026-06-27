@@ -32,6 +32,8 @@
     min-height: 100vh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   .app {
@@ -44,7 +46,6 @@
     overflow: hidden;
   }
 
-  /* ===== ANIMATED BG ===== */
   .bg-orb {
     position: fixed;
     border-radius: 50%;
@@ -64,7 +65,6 @@
     66% { transform: translate(-15px, 15px) scale(0.95); }
   }
 
-  /* ===== HEADER ===== */
   .header {
     padding: 16px 20px 8px;
     display: flex;
@@ -84,7 +84,6 @@
     font-weight: 600;
   }
 
-  /* ===== HERO COMPACT ===== */
   .hero {
     padding: 8px 20px 16px;
     text-align: center;
@@ -105,7 +104,6 @@
     margin: 0 auto 16px;
   }
 
-  /* ===== SUBJECTS GRID ===== */
   .subjects-section {
     flex: 1;
     padding: 0 16px 20px;
@@ -158,7 +156,190 @@
     line-height: 1.3;
   }
 
-  /* ===== BOTTOM NAV ===== */
+  .detail-page {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--deep-void);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .detail-page.active { display: flex; }
+
+  .detail-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,11,14,0.8);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+  .back-btn {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--text);
+    transition: all 0.2s ease;
+  }
+  .back-btn:active { transform: scale(0.95); }
+  .detail-title {
+    font-weight: 800; font-size: 18px;
+    background: linear-gradient(135deg, var(--text) 60%, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .detail-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 16px;
+    scrollbar-width: none;
+  }
+  .detail-content::-webkit-scrollbar { display: none; }
+
+  .detail-section-label {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  .subtopic-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .subtopic-card {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 14px; border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .subtopic-card:active { transform: scale(0.98); }
+  .subtopic-card:hover {
+    border-color: var(--glow);
+    box-shadow: 0 4px 20px var(--glow-shadow);
+  }
+  .subtopic-circle {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .subtopic-circle svg { width: 22px; height: 22px; color: white; }
+  .subtopic-info h4 {
+    font-weight: 700; font-size: 14px;
+    color: var(--text); margin-bottom: 3px;
+  }
+  .subtopic-info p {
+    font-size: 11px; color: var(--muted);
+    line-height: 1.4;
+  }
+  .subtopic-arrow {
+    margin-left: auto;
+    color: var(--muted);
+    opacity: 0.5;
+  }
+
+  .video-page {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: var(--deep-void);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .video-page.active { display: flex; }
+
+  .video-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,11,14,0.8);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  .video-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    scrollbar-width: none;
+  }
+  .video-content::-webkit-scrollbar { display: none; }
+
+  .video-section-label {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 14px;
+  }
+
+  .video-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+  }
+  .video-card:hover {
+    border-color: rgba(139,92,246,0.3);
+    box-shadow: 0 4px 24px rgba(139,92,246,0.1);
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+  }
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    outline: none;
+  }
+
+  .video-info {
+    padding: 14px 16px;
+  }
+  .video-info h4 {
+    font-weight: 700; font-size: 14px;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .video-info p {
+    font-size: 12px; color: var(--muted);
+    line-height: 1.5;
+  }
+  .video-meta {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 10px;
+  }
+  .video-tag {
+    font-size: 10px; font-weight: 600;
+    padding: 4px 10px; border-radius: 20px;
+    background: rgba(139,92,246,0.1);
+    color: var(--violet);
+    border: 1px solid rgba(139,92,246,0.2);
+  }
+  .video-duration {
+    font-size: 11px; color: var(--muted);
+    font-weight: 500;
+  }
+
   .bottom-nav {
     display: flex;
     justify-content: space-around;
@@ -180,29 +361,31 @@
   .nav-item.active, .nav-item:hover { color: var(--pink); }
   .nav-item svg { width: 22px; height: 22px; }
 
-  /* Animations */
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .anim-in {
-    animation: slideUp 0.5s ease-out both;
-  }
+  .anim-in { animation: slideUp 0.5s ease-out both; }
   .delay-1 { animation-delay: 0.1s; }
   .delay-2 { animation-delay: 0.2s; }
   .delay-3 { animation-delay: 0.3s; }
+
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .slide-in { animation: slideInRight 0.35s ease-out both; }
 </style>
 <base target="_blank">
 </head>
-<body>
+<body oncontextmenu="return false;">
 
 <div class="bg-orb bg-orb-1"></div>
 <div class="bg-orb bg-orb-2"></div>
 <div class="bg-orb bg-orb-3"></div>
 
-<div class="app">
+<div class="app" id="homePage">
 
-  <!-- Header -->
   <div class="header anim-in">
     <div>
       <div class="brand">Maadhur</div>
@@ -210,19 +393,16 @@
     </div>
   </div>
 
-  <!-- Hero -->
   <div class="hero anim-in delay-1">
     <h1 class="hero-title">Maadhur</h1>
     <p class="hero-desc">Your comprehensive UPSC preparation companion. All subjects, progress tracking & resources in one place.</p>
   </div>
 
-  <!-- Subjects -->
   <div class="subjects-section anim-in delay-2" id="subjects">
     <div class="section-label">All Subjects</div>
     <div class="subjects-grid" id="subjectsGrid"></div>
   </div>
 
-  <!-- Bottom Nav -->
   <nav class="bottom-nav anim-in delay-3">
     <a href="#subjects" class="nav-item active">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
@@ -244,11 +424,107 @@
 
 </div>
 
+<!-- Polity Detail Page -->
+<div class="detail-page" id="polityDetail">
+  <div class="detail-header">
+    <button class="back-btn" onclick="goBack()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </button>
+    <div class="detail-title">Polity</div>
+  </div>
+  <div class="detail-content">
+    <div class="detail-section-label">Sub Topics</div>
+    <div class="subtopic-grid" id="subtopicGrid"></div>
+  </div>
+</div>
+
+<!-- Constitution Videos Page -->
+<div class="video-page" id="constitutionVideos">
+  <div class="video-header">
+    <button class="back-btn" onclick="goBackFromVideos()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </button>
+    <div class="detail-title">Constitution</div>
+  </div>
+  <div class="video-content" id="videoContent">
+    <div class="video-section-label">Video Lessons</div>
+  </div>
+</div>
+
 <script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
+    e.preventDefault();
+  }
+});
+
+// ============================================================
+// ADD YOUR YOUTUBE VIDEOS HERE
+// 
+// Step 1: Go to YouTube and open any video
+// Step 2: Look at the URL in your browser address bar
+// Step 3: Copy the part after "v=" — that's your VIDEO_ID
+//
+// Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+//          VIDEO_ID = dQw4w9WgXcQ
+//
+// Step 4: Paste that ID below in the youtubeId field
+// Step 5: Write your own title and description
+// Step 6: Set the tag (Basics / Important / Advanced / Revision)
+// Step 7: Set the duration (e.g. "15 min", "1 hr 20 min")
+//
+// To add MORE videos, copy one block and paste below it.
+// To REMOVE a video, delete its entire block (from { to },).
+// ============================================================
+
+const constitutionVideos = [
+
+  // VIDEO 1 — Preamble
+  {
+    title: 'Preamble of the Indian Constitution',
+    desc: 'Understanding the philosophy and key terms of the Preamble.',
+    youtubeId: '8ZhoeSaPF-k',  // <-- PASTE YOUR VIDEO_ID HERE
+    tag: 'Basics',
+    duration: '18 min'
+  },
+
+  // VIDEO 2 — Fundamental Rights
+  {
+    title: 'Fundamental Rights - Part III',
+    desc: 'Detailed analysis of Articles 12 to 35 and key Supreme Court judgments.',
+    youtubeId: '8ZhoeSaPF-k',  // <-- PASTE YOUR VIDEO_ID HERE
+    tag: 'Important',
+    duration: '42 min'
+  },
+
+  // VIDEO 3 — DPSP
+  {
+    title: 'Directive Principles of State Policy',
+    desc: 'DPSP classification, conflict with Fundamental Rights, and 42nd Amendment.',
+    youtubeId: '8ZhoeSaPF-k',  // <-- PASTE YOUR VIDEO_ID HERE
+    tag: 'Advanced',
+    duration: '35 min'
+  },
+
+  // VIDEO 4 — Amendments
+  {
+    title: 'Constitutional Amendments',
+    desc: 'Important amendments from 1st to 105th - must know for Prelims & Mains.',
+    youtubeId: '8ZhoeSaPF-k',  // <-- PASTE YOUR VIDEO_ID HERE
+    tag: 'Revision',
+    duration: '28 min'
+  },
+
+  // ADD MORE VIDEOS BELOW THIS LINE
+  // Just copy one block above and paste here, then change the details
+
+];
+
 const subjects = [
   { name: 'Geography', desc: 'Physical, Human & Indian', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>' },
   { name: 'History', desc: 'Ancient, Medieval & Modern', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>' },
-  { name: 'Polity', desc: 'Constitution & Governance', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9m16-5H4a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M10 2v4m4-4v4"/></svg>' },
+  { name: 'Polity', desc: 'Constitution, Governance & Security', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9m16-5H4a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M10 2v4m4-4v4"/></svg>', hasSubtopics: true },
   { name: 'Economics', desc: 'Indian Economy & Development', gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>' },
   { name: 'Science & Tech', desc: 'General Science & Tech', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.04-2.04-7.36-.02-11.9 4.5"/></svg>' },
   { name: 'Ethics', desc: 'Integrity & Aptitude', gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' },
@@ -259,6 +535,14 @@ const subjects = [
   { name: 'Assamese', desc: 'Language & Literature', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>' },
 ];
 
+const politySubtopics = [
+  { name: 'Constitution', desc: 'Preamble, Fundamental Rights, DPSP, Amendments', gradient: 'linear-gradient(135deg,#8B5CF6,#A78BFA)', glow: 'rgba(139,92,246,0.4)', glowShadow: 'rgba(139,92,246,0.15)', icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>', hasVideos: true },
+  { name: 'Governance', desc: 'Parliament, Judiciary, Executive, Local Govt', gradient: 'linear-gradient(135deg,#00D4FF,#33DFFF)', glow: 'rgba(0,212,255,0.4)', glowShadow: 'rgba(0,212,255,0.15)', icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9m16-5H4a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M10 2v4m4-4v4"/></svg>' },
+  { name: 'International Relations', desc: "India's Foreign Policy, Bilateral & Multilateral", gradient: 'linear-gradient(135deg,#22C55E,#4ADE80)', glow: 'rgba(34,197,94,0.4)', glowShadow: 'rgba(34,197,94,0.15)', icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>' },
+  { name: 'Internal Security', desc: 'Terrorism, Cyber Security, Border Management', gradient: 'linear-gradient(135deg,#FF4D8B,#FF6B9F)', glow: 'rgba(255,77,139,0.4)', glowShadow: 'rgba(255,77,139,0.15)', icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+];
+
+// Render subjects
 const grid = document.getElementById('subjectsGrid');
 subjects.forEach((s, i) => {
   const card = document.createElement('div');
@@ -273,10 +557,105 @@ subjects.forEach((s, i) => {
       <p>${s.desc}</p>
     </div>
   `;
+  if (s.hasSubtopics) {
+    card.addEventListener('click', openPolityDetail);
+  }
   grid.appendChild(card);
 });
 
-// Bottom nav active state
+// Render Polity subtopics
+const subtopicGrid = document.getElementById('subtopicGrid');
+politySubtopics.forEach((s, i) => {
+  const card = document.createElement('div');
+  card.className = 'subtopic-card slide-in';
+  card.style.setProperty('--glow', s.glow);
+  card.style.setProperty('--glow-shadow', s.glowShadow);
+  card.style.animationDelay = `${i * 0.08}s`;
+  card.innerHTML = `
+    <div class="subtopic-circle" style="background:${s.gradient};">${s.icon}</div>
+    <div class="subtopic-info">
+      <h4>${s.name}</h4>
+      <p>${s.desc}</p>
+    </div>
+    <div class="subtopic-arrow">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+  `;
+  if (s.hasVideos) {
+    card.addEventListener('click', openConstitutionVideos);
+  }
+  subtopicGrid.appendChild(card);
+});
+
+// Render Constitution videos with YouTube embed
+const videoContent = document.getElementById('videoContent');
+
+function renderVideos() {
+  const oldList = document.getElementById('videoList');
+  if (oldList) oldList.remove();
+
+  const videoContainer = document.createElement('div');
+  videoContainer.id = 'videoList';
+  videoContent.appendChild(videoContainer);
+
+  constitutionVideos.forEach((v, i) => {
+    const card = document.createElement('div');
+    card.className = 'video-card slide-in';
+    card.style.animationDelay = `${i * 0.1}s`;
+
+    const embedUrl = `https://www.youtube.com/embed/${v.youtubeId}?rel=0&modestbranding=1`;
+
+    card.innerHTML = `
+      <div class="video-wrapper">
+        <iframe
+          src="${embedUrl}"
+          title="${v.title}"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <div class="video-info">
+        <h4>${v.title}</h4>
+        <p>${v.desc}</p>
+        <div class="video-meta">
+          <span class="video-tag">${v.tag}</span>
+          <span class="video-duration">${v.duration}</span>
+        </div>
+      </div>
+    `;
+    videoContainer.appendChild(card);
+  });
+}
+
+function openPolityDetail() {
+  document.getElementById('polityDetail').classList.add('active');
+}
+
+function openConstitutionVideos() {
+  document.getElementById('constitutionVideos').classList.add('active');
+  renderVideos();
+}
+
+function goBack() {
+  document.querySelectorAll('iframe').forEach(f => {
+    const src = f.src;
+    f.src = '';
+    f.src = src;
+  });
+  document.getElementById('polityDetail').classList.remove('active');
+}
+
+function goBackFromVideos() {
+  document.querySelectorAll('iframe').forEach(f => {
+    const src = f.src;
+    f.src = '';
+    f.src = src;
+  });
+  document.getElementById('constitutionVideos').classList.remove('active');
+}
+
 document.querySelectorAll('.nav-item').forEach(item => {
   item.addEventListener('click', function(e) {
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
